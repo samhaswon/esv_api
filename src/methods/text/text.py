@@ -9,6 +9,9 @@ from re import sub, search
 
 class Text(Method):
     def __init__(self, api_key: str) -> None:
+        """
+        :param api_key: Your ESV API key
+        """
         super().__init__()
         self.__API_KEY: str = api_key
         self.__API_URL: str = 'https://api.esv.org/v3/passage/text/'
@@ -23,7 +26,8 @@ class Text(Method):
                  'chapter': str
                  'verses': Dict[heading (none for no heading): ["1 ...", "2 ..."], heading: verses...]
                  'footnotes': str
-        :raises: PassageInvalid for invalid passages
+        :raises: PassageInvalid for invalid passage queries.
+        :raises: PassageNotFound for connection issues.
         """
         if super().has_passage(book, chapter):
             return self.__get_chapter_esv_json(book + " " + str(chapter))
@@ -50,7 +54,7 @@ class Text(Method):
                     indent_psalm_doxology: int = 30,
                     line_length: int = 0) -> tuple:
         """
-        Gets a passage from the ESV API in text format
+        Gets a passage from the ESV API in text format. Use this function for more control over the output.
         :param query: passage (verse/chapter) to get
         :param include_passage_references: Whether to include passage references (e.g. John 1)
         :param include_verse_numbers: Whether to include the verse numbers
@@ -74,6 +78,8 @@ class Text(Method):
         :return: Tuple[passage_reference: str,
                         Dict[heading: List[verses (str)]]
                         footnotes: str]
+        :raises: PassageInvalid for invalid passage queries.
+        :raises: PassageNotFound for connection issues.
         """
         params = {
             'q': query,
@@ -122,10 +128,10 @@ class Text(Method):
 
     def __get_chapter_esv_json(self, chapter_in: str) -> dict:
         """
-        Returns a dictionary (Format: {book: "", chapter: 0, verses: {'heading': ["1 content..."]}, footnotes: ""})
-        for JSON-ish usage for MongoDB or a similar database
+        Get a dictionary of a chapter from the ESV.
         :param chapter_in: The chapter to get from the API
-        :return: Dictionary of the chapter
+        :return: Dictionary of the chapter (Format: {book: "", chapter: 0, verses: {'heading': ["1 content..."]},
+                 footnotes: ""})
         """
         # Check for 1 chapter books which the API returns (by name with 1) as only the first verse.
         single_chapter_check: str = chapter_in[0:chapter_in.rfind(' ')]
