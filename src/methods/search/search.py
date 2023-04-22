@@ -3,11 +3,17 @@ import requests
 
 
 class SearchError(Exception):
+    """
+    Exception for when a connection error has occurred.
+    """
     def __init__(self, message: str):
         super().__init__(message)
 
 
 class SearchInvalid(Exception):
+    """
+    Exception for invalid search
+    """
     def __init__(self, size: str):
         super().__init__("{} > 100, the max page size".format(size))
 
@@ -27,7 +33,11 @@ class Search(Method):
         :param query: Query for the API
         :param page_size: The number of results per page (max 100)
         :param page: which page of the results to return
-        :return:
+        :return: Dict['page': int,
+                      'total_results': int,
+                      'results': List[Dict['reference': str,
+                                           'content': str]]
+                      'total_pages': int]
         """
         try:
             if page_size > 100:
