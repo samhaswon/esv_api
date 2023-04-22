@@ -1,10 +1,13 @@
-from src.methods.method import Method
-from src.passage import PassageInvalid, PassageNotFound
+from src.esv_api.method import Method
+from src.esv_api.passage import PassageInvalid, PassageNotFound
 from typing import List
 import requests
 
 
 class HTML(Method):
+    """
+    Gets an HTML version of a passage from the ESV API
+    """
     def __init__(self, api_key: str) -> None:
         """
         :param api_key: ESV API key
@@ -89,8 +92,8 @@ class HTML(Method):
                                                 'prev_chapter': List[int],
                                                 'next_chapter': List[int]]]
                       'passages': List[str] (the HTML)]
-        :raises: PassageInvalid for invalid passage queries (though the API is very lenient).
-        :raises: PassageNotFound for connection issues.
+        :raises PassageInvalid: for invalid passage queries (though the API is very lenient).
+        :raises PassageNotFound: for connection issues.
         """
         params = {
             'q': query,
@@ -137,8 +140,8 @@ class HTML(Method):
         """
         A more basic HTML response from the ESV API
         :param query: Passage to get
-        :return: HTML for the requested passage
-        :raises: PassageInvalid for invalid passage queries.
-        :raises: PassageNotFound for connection issues.
+        :return: HTML for the requested passage as a list of strings
+        :raises PassageInvalid: for invalid passage queries (though the API is very lenient).
+        :raises PassageNotFound: for connection issues.
         """
         return self.get_passage(query, include_footnotes=False, include_audio_link=False)['passages']

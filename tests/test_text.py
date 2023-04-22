@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.methods.text.text import Text
+from src.esv_api.text import Text
 
 
 class TestText(TestCase):

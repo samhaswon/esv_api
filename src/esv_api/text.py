@@ -1,13 +1,16 @@
 import requests
-from src.passage import PassageInvalid, PassageNotFound
+from src.esv_api.passage import PassageInvalid, PassageNotFound
 from typing import List
-from src.methods.method import Method
+from src.esv_api.method import Method
 from requests import get
 from re import split as resplit
 from re import sub, search
 
 
 class Text(Method):
+    """
+    Gets a text-only version of a passage from the ESV API
+    """
     def __init__(self, api_key: str) -> None:
         """
         :param api_key: Your ESV API key
@@ -26,8 +29,8 @@ class Text(Method):
                  'chapter': str
                  'verses': Dict[heading (none for no heading): ["1 ...", "2 ..."], heading: verses...]
                  'footnotes': str
-        :raises: PassageInvalid for invalid passage queries.
-        :raises: PassageNotFound for connection issues.
+        :raises PassageInvalid: for invalid passage queries.
+        :raises PassageNotFound: for connection issues.
         """
         if super().has_passage(book, chapter):
             return self.__get_chapter_esv_json(book + " " + str(chapter))
@@ -78,8 +81,8 @@ class Text(Method):
         :return: Tuple[passage_reference: str,
                         Dict[heading: List[verses (str)]]
                         footnotes: str]
-        :raises: PassageInvalid for invalid passage queries.
-        :raises: PassageNotFound for connection issues.
+        :raises PassageInvalid: for invalid passage queries.
+        :raises PassageNotFound: for connection issues.
         """
         params = {
             'q': query,

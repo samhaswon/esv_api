@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=67.7.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "esv_api_samhaswon"
+version = "0.0.3"
+authors = [
+  { name="Samuel Howard" },
+]
+description = "A Python package for interfacing with the ESV API"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["esv_api", "esv", "bible_api", "bible"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+dependencies = ["requests", "multipledispatch"]
+
+[project.urls]
+"Homepage" = "https://github.com/samhaswon/esv_api"
+"Bug Tracker" = "https://github.com/samhaswon/esv_api/issues"

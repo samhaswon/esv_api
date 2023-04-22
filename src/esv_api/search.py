@@ -1,4 +1,4 @@
-from src.methods.method import Method
+from src.esv_api.method import Method
 import requests
 
 
@@ -19,6 +19,9 @@ class SearchInvalid(Exception):
 
 
 class Search(Method):
+    """
+    Search the ESV (via the API) for passages.
+    """
     def __init__(self, api_key: str) -> None:
         """
         :param api_key: ESV API key
@@ -38,6 +41,8 @@ class Search(Method):
                       'results': List[Dict['reference': str,
                                            'content': str]]
                       'total_pages': int]
+        :raises SearchInvalid: raised for invalid queries
+        :raises SearchError: raised for connection errors
         """
         try:
             if page_size > 100:

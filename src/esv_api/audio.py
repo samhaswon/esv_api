@@ -1,9 +1,12 @@
-from src.methods.method import Method
-from src.passage import PassageInvalid, PassageNotFound
+from src.esv_api.method import Method
+from src.esv_api.passage import PassageInvalid, PassageNotFound
 import requests
 
 
 class Audio(Method):
+    """
+    Get a link to the audio version of a passage from the ESV API
+    """
     def __init__(self, api_key: str) -> None:
         """
         :param api_key: ESV API key
@@ -21,8 +24,8 @@ class Audio(Method):
         :param chapter: The chapter to get
         :param verse: verse to get (optional)
         :return: the URL of that passage
-        :raises: PassageInvalid for invalid passage queries.
-        :raises: PassageNotFound for connection issues.
+        :raises PassageInvalid: for invalid passage queries.
+        :raises PassageNotFound: for connection issues.
         """
         headers: dict = {'Authorization': 'Token %s' % self.__API_KEY}
         verse = verse if verse else ""

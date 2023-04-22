@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.methods.search.search import Search, SearchInvalid
+from src.esv_api.search import Search, SearchInvalid
 
 
 class TestSearch(TestCase):

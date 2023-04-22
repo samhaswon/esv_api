@@ -1,6 +1,6 @@
 from unittest import TestCase
-from src.methods.audio.audio import Audio
-from src.passage import PassageInvalid
+from src.esv_api.audio import Audio
+from src.esv_api.passage import PassageInvalid
 
 
 class TestAudio(TestCase):

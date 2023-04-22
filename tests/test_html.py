@@ -1,6 +1,6 @@
 from unittest import TestCase
-from src.methods.html.html import HTML
-from src.passage import PassageInvalid, PassageNotFound
+from src.esv_api.html import HTML
+from src.esv_api.passage import PassageInvalid
 
 
 class TestHTML(TestCase):
