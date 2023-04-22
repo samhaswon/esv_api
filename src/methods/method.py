@@ -1,11 +1,11 @@
 from typing import List
-from abc import ABC, abstractmethod
+from abc import ABC
 from multipledispatch import dispatch
 from typing import Tuple
 
 
 class Method(ABC):
-    def __init__(self, api_key: str) -> None:
+    def __init__(self) -> None:
         books_of_the_bible: List[Tuple[str, int]] = [("Genesis", 50),
                                                      ("Exodus", 40),
                                                      ("Leviticus", 27),
@@ -73,16 +73,10 @@ class Method(ABC):
                                                      ("Jude", 1),
                                                      ("Revelation", 22)]
         self.__books_of_the_bible: dict = dict(books_of_the_bible)
-        self.__API_KEY: str = api_key
-        self.__API_URL: str = 'https://api.esv.org/v3/passage/text/'
 
     @property
     def books_of_the_bible(self) -> dict:
         return self.__books_of_the_bible
-
-    @abstractmethod
-    def get_passage(self, book, chapter) -> dict:
-        raise NotImplementedError
 
     @dispatch(str, str)
     def next_passage(self, book: str, chapter: str) -> Tuple[str, str]:
