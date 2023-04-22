@@ -1,5 +1,6 @@
 # esv_api
-A Python package for interfacing with the ESV API
+A Python package for interfacing with the ESV API <br>
+Install using `pip install esv-api-samhaswon` or view the package at [https://pypi.org/project/esv-api-samhaswon/](https://pypi.org/project/esv-api-samhaswon/)
 
 ## Generating an API key for authorized ESV access:
 To start, make an account at [esv.org](https://www.esv.org/). After creating an account at [esv.org](https://www.esv.org/), create an API key at [https://api.esv.org/account/create-application/](https://api.esv.org/account/create-application/). This key can now be used for each of the API methods.
