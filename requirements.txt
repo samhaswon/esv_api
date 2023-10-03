@@ -4,7 +4,7 @@ idna==3.4
 pip==23.1.1
 requests==2.31.0
 setuptools==67.7.1
-urllib3==1.26.15
+urllib3==1.26.17
 wheel==0.40.0
 twine==4.0.2
 multipledispatch==0.6.0
